@@ -1,5 +1,5 @@
 # README
-
+[![Build Status](https://semaphoreci.com/api/v1/adamgunther1/rales_engine/branches/associations/shields_badge.svg)](https://semaphoreci.com/adamgunther1/rales_engine)
 Add a description
 
 To download RalesEngine app:
