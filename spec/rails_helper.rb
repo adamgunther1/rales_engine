@@ -54,7 +54,7 @@ RSpec.configure do |config|
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
-  # config.filter_gems_from_backtrace("gem name")
+  config.filter_gems_from_backtrace("rack-2.0.3", "railties-5.1.2", "database_cleaner-1.6.1", "rack-test-0.6.3")
 
      # add `FactoryGirl` methods
   config.include FactoryGirl::Syntax::Methods
