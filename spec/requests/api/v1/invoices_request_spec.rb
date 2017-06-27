@@ -26,7 +26,7 @@ RSpec.describe "Invoices API" do
     it "sends an invoice" do
       invoice = create(:invoice)
 
-      get "/api/v1/invoice/#{invoice.id}"
+      get "/api/v1/invoices/#{invoice.id}"
 
       raw_invoice = JSON.parse(response.body)
 
