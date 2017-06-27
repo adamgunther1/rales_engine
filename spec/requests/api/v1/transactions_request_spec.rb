@@ -15,10 +15,10 @@ describe "Transactions API" do
       expect(raw_transactions.count).to eq(5)
       expect(raw_transaction).to have_key("invoice_id")
       expect(raw_transaction["invoice_id"]).to be_a Integer
-      expect(raw_transaction).to have_key("credit_card_number")
-      expect(raw_transaction["credit_card_number"]).to be_a String
-      expect(raw_transaction).to have_key("credit_card_expiration_date")
-      expect(raw_transaction["credit_card_expiration_date"]).to be_a String
+      # expect(raw_transaction).to have_key("credit_card_number")
+      # expect(raw_transaction["credit_card_number"]).to be_a String
+      # expect(raw_transaction).to have_key("credit_card_expiration_date")
+      # expect(raw_transaction["credit_card_expiration_date"]).to be_a String
       expect(raw_transaction).to have_key("result")
       expect(raw_transaction["result"]).to be_a String
       expect(raw_transaction).to have_key("created_at")
@@ -42,10 +42,10 @@ describe "Transactions API" do
       expect(raw_transaction["id"]).to eq(transaction_id)
       expect(raw_transaction).to have_key("invoice_id")
       expect(raw_transaction["invoice_id"]).to be_a Integer
-      expect(raw_transaction).to have_key("credit_card_number")
-      expect(raw_transaction["credit_card_number"]).to be_a String
-      expect(raw_transaction).to have_key("credit_card_expiration_date")
-      expect(raw_transaction["credit_card_expiration_date"]).to be_a String
+      # expect(raw_transaction).to have_key("credit_card_number")
+      # expect(raw_transaction["credit_card_number"]).to be_a String
+      # expect(raw_transaction).to have_key("credit_card_expiration_date")
+      # expect(raw_transaction["credit_card_expiration_date"]).to be_a String
       expect(raw_transaction).to have_key("result")
       expect(raw_transaction["result"]).to be_a String
       expect(raw_transaction).to have_key("created_at")
