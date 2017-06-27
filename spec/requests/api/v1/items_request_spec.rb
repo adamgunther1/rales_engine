@@ -28,7 +28,7 @@ RSpec.describe "Items API" do
     it "sends an item" do
       item = create(:item)
 
-      get "/api/v1/item/#{item.id}"
+      get "/api/v1/items/#{item.id}"
 
       raw_item = JSON.parse(response.body)
 

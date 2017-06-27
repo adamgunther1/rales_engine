@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Invoice Items API" do
   context "GET /api/v1/invoice_items" do
     it "sends all invoice_items" do
-      create_list(:invoice_items, 3)
+      create_list(:invoice_item, 3)
 
       get "/api/v1/invoice_items"
 
@@ -26,7 +26,7 @@ RSpec.describe "Invoice Items API" do
 
   context "GET /api/v1/invoice_items/:id" do
     it "sends an invoice_item" do
-      invoice_item = create(:invoice_items)
+      invoice_item = create(:invoice_item)
 
       get "/api/v1/invoice_items/#{invoice_item.id}"
 
