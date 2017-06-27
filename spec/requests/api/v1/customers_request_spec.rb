@@ -17,10 +17,10 @@ describe "Customers API" do
       expect(raw_customer["first_name"]).to be_a String
       expect(raw_customer).to have_key("last_name")
       expect(raw_customer["last_name"]).to be_a String
-      expect(raw_customer).to have_key("created_at")
-      expect(raw_customer["created_at"]).to be_a String
-      expect(raw_customer).to have_key("updated_at")
-      expect(raw_customer["updated_at"]).to be_a String
+      # expect(raw_customer).to have_key("created_at")
+      # expect(raw_customer["created_at"]).to be_a String
+      # expect(raw_customer).to have_key("updated_at")
+      # expect(raw_customer["updated_at"]).to be_a String
     end
   end
 
@@ -40,10 +40,10 @@ describe "Customers API" do
       expect(raw_customer["first_name"]).to be_a String
       expect(raw_customer).to have_key("last_name")
       expect(raw_customer["last_name"]).to be_a String
-      expect(raw_customer).to have_key("created_at")
-      expect(raw_customer["created_at"]).to be_a String
-      expect(raw_customer).to have_key("updated_at")
-      expect(raw_customer["updated_at"]).to be_a String
+      # expect(raw_customer).to have_key("created_at")
+      # expect(raw_customer["created_at"]).to be_a String
+      # expect(raw_customer).to have_key("updated_at")
+      # expect(raw_customer["updated_at"]).to be_a String
     end
   end
 end
