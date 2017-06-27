@@ -18,7 +18,7 @@ RSpec.describe "Invoices API" do
       expect(raw_invoice).to have_key("status")
       expect(raw_invoice["customer_id"]).to be_a Integer
       expect(raw_invoice["merchant_id"]).to be_a Integer
-      expect(raw_invoice["status"]).to be_a Integer
+      expect(raw_invoice["status"]).to be_a String
     end
   end
 
@@ -37,7 +37,7 @@ RSpec.describe "Invoices API" do
       expect(raw_invoice).to have_key("status")
       expect(raw_invoice["customer_id"]).to be_a Integer
       expect(raw_invoice["merchant_id"]).to be_a Integer
-      expect(raw_invoice["status"]).to be_a Integer
+      expect(raw_invoice["status"]).to be_a String
     end
   end
 end
