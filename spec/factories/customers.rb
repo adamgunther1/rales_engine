@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :customer do
-    first_name "Jane"
-    last_name "Doe"
+    sequence(:first_name) { |n| "Jane#{n}" }
+    sequence(:last_name) { |n| "Doe#{n}"}
   end
 end
