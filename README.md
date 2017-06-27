@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Add a description
 
-Things you may want to cover:
+To download RalesEngine app:
+```
+git clone https://github.com/adamgunther1/rales_engine.git
+bundle
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To setup and seed the database:
+```
+rake db:{create,migrate}
+rake load:csv_seed
+```
