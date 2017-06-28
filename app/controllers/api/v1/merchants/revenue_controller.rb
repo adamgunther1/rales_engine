@@ -1,12 +1,10 @@
 class Api::V1::Merchants::RevenueController < ApplicationController
 
   def index
-    sql = "SELECT invoices.updated_at AS date, SUM(invoice_items.quantity * invoice_items.unit_price) AS total_revenue FROM merchants INNER JOIN items ON merchants.id = items.merchant_id INNER JOIN invoice_items ON items.id = invoice_items.item_id INNER JOIN invoices ON invoices.id = invoice_items.invoice_id INNER JOIN transactions ON transactions.invoice_id = invoices.id WHERE invoices.updated_at = '#{params[:date]}' AND transactions.result = 0 GROUP BY date;"
-    result = ActiveRecord::Base.connection.execute(sql).values
-    # binding.pry
-    output = {total_revenue: result.first.last/100.to_f}
-
-    render json: output
+        binding.pry
+        @something = Merchant.revenue_for_all_by_date(params[:date])
+        binding.pry
+    render json: @something
   end
 
   def show
