@@ -16,7 +16,7 @@ RSpec.describe "Merchants/Revenue API" do
       expect(response).to be_success
       
       raw_merchant = JSON.parse(response.body)
-binding.pry
+      
       expect(raw_merchant).to have_key("total_revenue")
       # expect(raw_merchant).to have_key("date")
       expect(raw_merchant["total_revenue"]).to be_a Float
