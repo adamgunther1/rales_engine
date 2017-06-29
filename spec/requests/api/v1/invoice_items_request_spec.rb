@@ -20,7 +20,7 @@ RSpec.describe "Invoice Items API" do
       expect(raw_invoice_item["invoice_id"]).to be_a Integer
       expect(raw_invoice_item["item_id"]).to be_a Integer
       expect(raw_invoice_item["quantity"]).to be_a Integer
-      expect(raw_invoice_item["unit_price"]).to be_a Integer
+      expect(raw_invoice_item["unit_price"]).to be_a String
     end
   end
 
@@ -41,7 +41,7 @@ RSpec.describe "Invoice Items API" do
       expect(raw_invoice_item["invoice_id"]).to be_a Integer
       expect(raw_invoice_item["item_id"]).to be_a Integer
       expect(raw_invoice_item["quantity"]).to be_a Integer
-      expect(raw_invoice_item["unit_price"]).to be_a Integer
+      expect(raw_invoice_item["unit_price"]).to be_a String
     end
   end
 end
