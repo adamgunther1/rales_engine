@@ -11,7 +11,7 @@ class Merchant < ApplicationRecord
       INNER JOIN invoices ON invoices.id = invoice_items.invoice_id 
       INNER JOIN transactions ON transactions.invoice_id = invoices.id 
       WHERE invoices.updated_at = '#{date}' AND transactions.result = 0" ]
-    { "total_revenue" => value.first["total_revenue"] }
+    value.first
   end
 
   def self.revenue_for_one_merchant(id)
@@ -24,7 +24,7 @@ class Merchant < ApplicationRecord
       INNER JOIN transactions ON transactions.invoice_id = invoices.id
       WHERE merchants.id =  #{id} AND transactions.result = 0
       GROUP BY merchant_name" ]
-    { "revenue" => value.first["revenue"]}
+    value.first
   end
 
   def self.revenue_for_one_merchant_by_date(id, date)
@@ -37,7 +37,6 @@ class Merchant < ApplicationRecord
       INNER JOIN transactions ON transactions.invoice_id = invoices.id
       WHERE merchants.id = #{id} AND invoices.updated_at = '#{date}' AND transactions.result = 0
       GROUP BY merchant_name, date" ]
-    { "revenue" => value.first["revenue"]}   
+    value.first
   end
-
 end
