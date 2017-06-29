@@ -36,4 +36,18 @@ class Merchant < ApplicationRecord
     ]
   end
 
+  def self.favorite_customer(id)
+    value = Merchant.find_by_sql [
+      "SELECT c.id, COUNT(t.result) AS total_transactions 
+      FROM merchants m 
+      JOIN invoices i ON m.id = i.merchant_id 
+      JOIN customers c ON i.customer_id = c.id 
+      JOIN transactions t ON t.invoice_id = i.id 
+      WHERE t.result = 0 AND m.id = #{id} 
+      GROUP BY 1 
+      ORDER BY 2 DESC 
+      LIMIT 1;"
+    ]
+    { "id" => value.first["id"] }
+  end
 end
