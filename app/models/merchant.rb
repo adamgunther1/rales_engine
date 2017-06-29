@@ -16,7 +16,7 @@ class Merchant < ApplicationRecord
 
   def self.customers_with_pending_invoices(id)
     value = Merchant.find_by_sql [
-      "SELECT c.id customer_id, c.first_name first_name, c.last_name last_name
+      "SELECT c.id id, c.first_name first_name, c.last_name last_name
       FROM merchants m 
       INNER JOIN invoices i ON m.id = i.merchant_id 
       INNER JOIN customers c ON i.customer_id = c.id 
@@ -27,17 +27,10 @@ class Merchant < ApplicationRecord
       ORDER BY 1,2,3 
       LIMIT 1;"
     ]
-    [
-      {
-        "id" => value.first["customer_id"],
-        "first_name" => value.first["first_name"],
-        "last_name" => value.first["last_name"],
-      }
-    ]
   end
 
   def self.favorite_customer(id)
-    value = Merchant.find_by_sql [
+    values = Merchant.find_by_sql [
       "SELECT c.id, COUNT(t.result) AS total_transactions 
       FROM merchants m 
       JOIN invoices i ON m.id = i.merchant_id 
@@ -48,7 +41,7 @@ class Merchant < ApplicationRecord
       ORDER BY 2 DESC 
       LIMIT 1;"
     ]
-    { "id" => value.first["id"] }
+    values.first
   end
 
   def self.most_revenue(quantity)
