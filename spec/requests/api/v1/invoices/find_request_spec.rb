@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Invoice/Find API" do
-  context "GET /api/v1/invoice_items" do
-    it "sends all invoice_items" do
+  context "GET /api/v1/invoices/find?params" do
+    it "returns the first invoice it matches to a specific id" do
       create_list(:invoice, 4)
       invoice = Invoice.first
 
@@ -23,7 +23,7 @@ RSpec.describe "Invoice/Find API" do
       expect(raw_invoice["merchant_id"]).to be_a Integer
     end
 
-    it "sends all invoice_items" do
+    it "returns the first invoice it matches to a specific status" do
       create_list(:invoice, 4)
       invoice = Invoice.first
 
@@ -40,7 +40,7 @@ RSpec.describe "Invoice/Find API" do
 
     end
 
-    it "sends all invoice_items" do
+    it "returns the first invoice it matches to a specific customer id" do
       create_list(:invoice, 4)
       invoice = Invoice.first
 
@@ -56,7 +56,7 @@ RSpec.describe "Invoice/Find API" do
       expect(raw_invoice["merchant_id"]).to eq(invoice.merchant.id)
     end
 
-    it "sends all invoice_items" do
+    it "returns the first invoice it matches to a specific merchant id" do
       create_list(:invoice, 4)
       invoice = Invoice.first
 
