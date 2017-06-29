@@ -41,7 +41,7 @@ class Merchant < ApplicationRecord
   end
 
   def self.most_items(quantity)
-    values = Merchant.find_by_sql [
+    Merchant.find_by_sql [
       "SELECT merchants.name, merchants.id, SUM(invoice_items.quantity) AS total_items_sold
       FROM merchants 
       INNER JOIN items ON merchants.id = items.merchant_id 
