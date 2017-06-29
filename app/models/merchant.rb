@@ -50,4 +50,19 @@ class Merchant < ApplicationRecord
     ]
     { "id" => value.first["id"] }
   end
+
+  def self.most_revenue(quantity)
+    value = Merchant.find_by_sql [
+      "SELECT m.id, m.name, SUM(ii.quantity * ii.unit_price) revenue
+      FROM merchants m
+      INNER JOIN items it ON m.id = it.merchant_id
+      INNER JOIN invoice_items ii ON it.id = ii.item_id
+      INNER JOIN invoices i ON i.id = ii.invoice_id
+      INNER JOIN transactions t ON t.invoice_id = i.id
+      WHERE t.result = 0
+      GROUP BY 1, 2
+      ORDER BY 3 DESC
+      LIMIT #{quantity};" ]
+    # value.first
+  end
 end
