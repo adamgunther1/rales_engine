@@ -39,4 +39,18 @@ class Merchant < ApplicationRecord
       GROUP BY merchant_name, date" ]
     value.first
   end
+
+  def self.most_items(quantity)
+    values = Merchant.find_by_sql [
+      "SELECT merchants.name, merchants.id, SUM(invoice_items.quantity) AS total_items_sold
+      FROM merchants 
+      INNER JOIN items ON merchants.id = items.merchant_id 
+      INNER JOIN invoice_items ON items.id = invoice_items.item_id
+      INNER JOIN invoices ON invoices.id = invoice_items.invoice_id
+      INNER JOIN transactions ON invoices.id = transactions.invoice_id
+      WHERE transactions.result = 0
+      GROUP BY 1,2
+      ORDER BY total_items_sold DESC
+      LIMIT  #{quantity}" ]
+  end
 end

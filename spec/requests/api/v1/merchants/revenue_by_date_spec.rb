@@ -24,7 +24,7 @@ RSpec.describe "Merchants/Revenue API" do
   end
 
   context "GET /api/v1/merchants/:id/revenue?date=x" do
-    it "returns the total revenue for date 'x' across all merchants" do
+    it "returns the total revenue for date 'x' for one merchant" do
       merchant = create(:merchant_with_items)
       invoice = create(:invoice, merchant_id: merchant.id, created_at: '2012-03-16 11:55:05', updated_at: '2012-03-16 11:55:05')
       invoice2 = create(:invoice, merchant_id: merchant.id, created_at: '2012-03-16 11:55:05', updated_at: '2012-03-16 11:55:05')
