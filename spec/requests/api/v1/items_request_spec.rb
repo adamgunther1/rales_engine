@@ -19,7 +19,7 @@ RSpec.describe "Items API" do
       expect(raw_item).to have_key("merchant_id")
       expect(raw_item["name"]).to be_a String
       expect(raw_item["description"]).to be_a String
-      expect(raw_item["unit_price"]).to be_a Integer
+      expect(raw_item["unit_price"]).to be_a String
       expect(raw_item["merchant_id"]).to be_a Integer
     end
   end
@@ -40,7 +40,7 @@ RSpec.describe "Items API" do
       expect(raw_item).to have_key("merchant_id")
       expect(raw_item["name"]).to be_a String
       expect(raw_item["description"]).to be_a String
-      expect(raw_item["unit_price"]).to be_a Integer
+      expect(raw_item["unit_price"]).to be_a String
       expect(raw_item["merchant_id"]).to be_a Integer
     end
   end
