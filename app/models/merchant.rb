@@ -63,6 +63,5 @@ class Merchant < ApplicationRecord
       GROUP BY 1, 2
       ORDER BY 3 DESC
       LIMIT #{quantity};" ]
-    # value.first
   end
 end
