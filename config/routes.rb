@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       namespace :merchants do
         get '/revenue', to: 'revenue#index'
         # get '/:id/revenue', to: 'revenue#show'       
+        get '/:id/customers_with_pending_invoices', to: 'customers_with_pending_invoices#show'
       end
       resources :merchants, only: [:index, :show]
       resources :invoice_items, only: [:index, :show]
