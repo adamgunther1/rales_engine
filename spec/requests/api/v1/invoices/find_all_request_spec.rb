@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "Invoice/Find API" do
-  context "GET /api/v1/invoice_items" do
+RSpec.describe "Invoice/FindAll API" do
+  context "GET /api/v1/invoices/find?params" do
     it "returns all invoices that match a specific id" do
       create_list(:invoice, 4)
       invoice = Invoice.first

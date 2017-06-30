@@ -63,6 +63,14 @@ class Merchant < ApplicationRecord
       INNER JOIN transactions t ON t.invoice_id = i.id 
       INNER JOIN invoice_items ii ON i.id = ii.invoice_id 
       WHERE t.result = 1 AND m.id = #{id} 
+      EXCEPT 
+      SELECT c.id id, c.first_name first_name, c.last_name last_name
+      FROM merchants m 
+      INNER JOIN invoices i ON m.id = i.merchant_id 
+      INNER JOIN customers c ON i.customer_id = c.id 
+      INNER JOIN transactions t ON t.invoice_id = i.id 
+      INNER JOIN invoice_items ii ON i.id = ii.invoice_id 
+      WHERE i.status = 0
       GROUP BY 1,2,3 
       ORDER BY 1,2,3 
       LIMIT 1;"
