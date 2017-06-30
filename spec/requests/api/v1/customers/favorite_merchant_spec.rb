@@ -13,12 +13,12 @@ RSpec.describe "Customers/FavoriteMerchant API" do
       create(:transaction, invoice_id: invoice.id)
       create(:transaction, invoice_id: invoice2.id, result: 0)
 
-      get "/api/v1/customers/#{customer.id}/favorite_merchant"
+      get "/api/v1/customers/#{customer2.id}/favorite_merchant"
+
 
       expect(response).to be_success
       
       raw_merchant = JSON.parse(response.body)
-
       expect(raw_merchant).to have_key("id")
       expect(raw_merchant).to have_key("name")
       expect(raw_merchant["id"]).to be_an Integer
