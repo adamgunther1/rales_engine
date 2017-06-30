@@ -10,7 +10,7 @@ class Customer < ApplicationRecord
       JOIN transactions t ON t.invoice_id = i.id 
       JOIN merchants m ON m.id = i.merchant_id 
       WHERE t.result = 0 AND c.id = #{id} 
-      GROUP BY 1,2,4
+      GROUP BY 1,2
       ORDER BY 3 DESC 
       LIMIT 1" ]
     value.first
