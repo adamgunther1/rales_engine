@@ -56,24 +56,16 @@ class Merchant < ApplicationRecord
 
   def self.customers_with_pending_invoices(id)
     value = Merchant.find_by_sql [
-      "SELECT c.id id, c.first_name first_name, c.last_name last_name
-      FROM merchants m 
-      INNER JOIN invoices i ON m.id = i.merchant_id 
+      "WITH pending_invoices as (SELECT i.id inv_id, MAX(t.id) max FROM invoices i INNER JOIN transactions t ON i.id = t.invoice_id GROUP BY 1
+      EXCEPT
+      SELECT i.id, MAX(t.id) FROM invoices i INNER JOIN transactions t ON i.id = t.invoice_id WHERE result = 0 GROUP BY 1)
+      SELECT c.id, c.first_name, c.last_name
+      FROM merchants m
+      INNER JOIN invoices i ON i.merchant_id = m.id
+      INNER JOIN pending_invoices ON pending_invoices.inv_id = i.id
       INNER JOIN customers c ON i.customer_id = c.id 
-      INNER JOIN transactions t ON t.invoice_id = i.id 
-      INNER JOIN invoice_items ii ON i.id = ii.invoice_id 
-      WHERE t.result = 1 AND m.id = #{id} 
-      EXCEPT 
-      SELECT c.id id, c.first_name first_name, c.last_name last_name
-      FROM merchants m 
-      INNER JOIN invoices i ON m.id = i.merchant_id 
-      INNER JOIN customers c ON i.customer_id = c.id 
-      INNER JOIN transactions t ON t.invoice_id = i.id 
-      INNER JOIN invoice_items ii ON i.id = ii.invoice_id 
-      WHERE i.status = 0
-      GROUP BY 1,2,3 
-      ORDER BY 1,2,3 
-      LIMIT 1;"
+      WHERE m.id = #{id}
+      GROUP BY 1,2,3;"
     ]
   end
 
@@ -84,7 +76,7 @@ class Merchant < ApplicationRecord
       JOIN invoices i ON m.id = i.merchant_id 
       JOIN customers c ON i.customer_id = c.id 
       JOIN transactions t ON t.invoice_id = i.id 
-      WHERE t.result = 0 AND m.id = #{id} 
+      WHERE t.result = 0 AND m.id = #{id}
       GROUP BY 1 
       ORDER BY 2 DESC 
       LIMIT 1;"
