@@ -22,7 +22,7 @@ git clone https://github.com/adamgunther1/rales_engine.git
 
 Navigate into the project:
 ```
-cd rails_engine
+cd rales_engine
 ```
 
 Bundle:
