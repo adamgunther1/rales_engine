@@ -21,10 +21,8 @@ RSpec.describe "Merchants/MostItemsByQuantity API" do
 
       expect(raw_merchant.first).to have_key("id")
       expect(raw_merchant.first).to have_key("name")
-      expect(raw_merchant.first).to have_key("total_items_sold")
       expect(raw_merchant.first["id"]).to be_an Integer
       expect(raw_merchant.first["name"]).to be_an String
-      expect(raw_merchant.first["total_items_sold"]).to be_a Integer
     end
   end
 end
