@@ -4,7 +4,7 @@ class Api::V1::Items::FindController < ApplicationController
     if params[:unit_price]
       params[:unit_price] = params[:unit_price].to_f*100
     end
-    render json: Item.find_by(item_params)
+    render json: Item.order(:id).find_by(item_params)
   end
 
   private
