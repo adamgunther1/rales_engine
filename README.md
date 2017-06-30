@@ -197,3 +197,12 @@ Open your browser to `localhost:3000`
 #### Customers
 
 - `/api/v1/customers/:id/favorite_merchant` returns a merchant where the customer has conducted the most successful transactions
+
+### Testing
+
+* Clone down [rails-engine spec harness](https://github.com/turingschool/rales_engine_spec_harness)
+* Navigate into the railes-engine directory `cd rails-engine`
+* If you haven't, run the setup instructions.
+* Run `rails server`
+* In a separate terminal window, navigate into rales_engine_spec_harness directory
+* Run `rake`
