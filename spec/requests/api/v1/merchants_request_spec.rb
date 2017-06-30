@@ -15,10 +15,6 @@ describe "Merchants API" do
       expect(raw_merchants.count).to eq(5)
       expect(raw_merchant).to have_key("name")
       expect(raw_merchant["name"]).to be_a String
-      # expect(raw_merchant).to have_key("created_at")
-      # expect(raw_merchant["created_at"]).to be_a String
-      # expect(raw_merchant).to have_key("updated_at")
-      # expect(raw_merchant["updated_at"]).to be_a String
     end
   end
 
@@ -35,11 +31,7 @@ describe "Merchants API" do
 
       expect(raw_merchant["id"]).to eq(merchant_id)
       expect(raw_merchant).to have_key("name")
-      expect(raw_merchant["name"]).to be_a String
-      # expect(raw_merchant).to have_key("created_at")
-      # expect(raw_merchant["created_at"]).to be_a String
-      # expect(raw_merchant).to have_key("updated_at")
-      # expect(raw_merchant["updated_at"]).to be_a String     
+      expect(raw_merchant["name"]).to be_a String   
     end
   end
 end
