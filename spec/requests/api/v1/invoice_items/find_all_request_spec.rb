@@ -48,12 +48,12 @@ RSpec.describe "InvoiceItem/FindAll API" do
     end
 
     it "returns all invoice_items that match a specific unit_price" do
-      create_list(:invoice_item, 3)
+      create_list(:invoice_item, 3, unit_price: 55890)
       invoice_item = InvoiceItem.first
       invoice_item_3 = InvoiceItem.last
       invoice_item_4 = create(:invoice_item, unit_price: 100)
 
-      get "/api/v1/invoice_items/find_all?unit_price=#{invoice_item.unit_price}"
+      get "/api/v1/invoice_items/find_all?unit_price=558.9"
 
       expect(response).to be_success
 
@@ -65,7 +65,7 @@ RSpec.describe "InvoiceItem/FindAll API" do
       expect(raw_invoice_item["id"]).to eq(invoice_item.id)
       expect(raw_invoice_item_3["id"]).to_not eq(invoice_item_4.id)
       expect(raw_invoice_item_3["id"]).to eq(invoice_item_3.id)
-      expect(raw_invoice_item["unit_price"]).to eq((invoice_item.unit_price/100.00).to_s)
+      expect(raw_invoice_item["unit_price"]).to eq("558.9")
     end
 
     it "returns all invoice_items that match a specific invoice id" do

@@ -86,5 +86,45 @@ RSpec.describe "Invoice/FindAll API" do
       expect(raw_invoice_3["id"]).to eq(invoice_4.id)
       expect(raw_invoice["merchant_id"]).to eq(invoice.merchant.id)
     end
+
+    it "returns all invoices that match a specific created_at" do
+      create_list(:invoice, 3, created_at: "2012-03-04 22:53:51")
+      invoice = Invoice.first
+      invoice_3 = Invoice.last
+      invoice_4 = create(:invoice)
+
+      get "/api/v1/invoices/find_all?created_at=2012-03-04 22:53:51"
+
+      expect(response).to be_success
+
+      raw_invoices = JSON.parse(response.body)
+      raw_invoice = raw_invoices.first
+      raw_invoice_3 = raw_invoices.last
+
+      expect(raw_invoices.count).to eq(3)
+      expect(raw_invoice["id"]).to eq(invoice.id)
+      expect(raw_invoice_3["id"]).to_not eq(invoice_4.id)
+      expect(raw_invoice_3["id"]).to eq(invoice_3.id)
+    end
+
+    it "returns all invoices that match a specific updated_at" do
+      create_list(:invoice, 3, updated_at: "2012-03-04 22:53:51")
+      invoice = Invoice.first
+      invoice_3 = Invoice.last
+      invoice_4 = create(:invoice)
+
+      get "/api/v1/invoices/find_all?updated_at=2012-03-04 22:53:51"
+
+      expect(response).to be_success
+
+      raw_invoices = JSON.parse(response.body)
+      raw_invoice = raw_invoices.first
+      raw_invoice_3 = raw_invoices.last
+
+      expect(raw_invoices.count).to eq(3)
+      expect(raw_invoice["id"]).to eq(invoice.id)
+      expect(raw_invoice_3["id"]).to_not eq(invoice_4.id)
+      expect(raw_invoice_3["id"]).to eq(invoice_3.id)
+    end
   end
 end

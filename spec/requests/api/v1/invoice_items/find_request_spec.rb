@@ -40,17 +40,17 @@ RSpec.describe "InvoiceItem/Find API" do
     end
 
     it "returns the first invoice_item it matches to a specific unit_price" do
-      create_list(:invoice_item, 4)
+      create_list(:invoice_item, 4, unit_price: 34568)
       invoice_item = InvoiceItem.first
 
-      get "/api/v1/invoice_items/find?unit_price=#{invoice_item.unit_price}"
+      get "/api/v1/invoice_items/find?unit_price=345.68"
 
       expect(response).to be_success
 
       raw_invoice_item = JSON.parse(response.body)
 
       expect(raw_invoice_item["id"]).to eq(invoice_item.id)
-      expect(raw_invoice_item["unit_price"]).to eq((invoice_item.unit_price/100.00).to_s)
+      expect(raw_invoice_item["unit_price"]).to eq("345.68")
     end
 
     it "returns the first invoice_item it matches to a specific invoice id" do
