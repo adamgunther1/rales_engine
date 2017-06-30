@@ -71,5 +71,31 @@ RSpec.describe "Invoice/Find API" do
       expect(raw_invoice["customer_id"]).to eq(invoice.customer.id)
       expect(raw_invoice["merchant_id"]).to eq(invoice.merchant.id)
     end
+
+    it "returns the first invoice it matches to a specific created_at" do
+      create_list(:invoice, 4, created_at: "2012-03-04 22:53:51")
+      invoice = Invoice.first
+
+      get "/api/v1/invoices/find?created_at=2012-03-04 22:53:51"
+
+      expect(response).to be_success
+
+      raw_invoice = JSON.parse(response.body)
+
+      expect(raw_invoice["id"]).to eq(invoice.id)
+    end
+
+    it "returns the first invoice it matches to a specific updated_at" do
+      create_list(:invoice, 4, updated_at: "2012-03-04 22:53:51")
+      invoice = Invoice.first
+
+      get "/api/v1/invoices/find?updated_at=2012-03-04 22:53:51"
+
+      expect(response).to be_success
+
+      raw_invoice = JSON.parse(response.body)
+
+      expect(raw_invoice["id"]).to eq(invoice.id)
+    end
   end
 end
