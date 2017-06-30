@@ -10,15 +10,15 @@ RSpec.describe "Items/BestDay API" do
       InvoiceItem.create(invoice_id: invoice2.id, item_id: merchant.items.last.id, quantity: 3, unit_price: 823765)
       create(:transaction, invoice_id: invoice.id)
       create(:transaction, invoice_id: invoice2.id, result: 0)
-      
-      get "/api/v1/items/#{merchant.items.first.id}/best_day"
+  
+      get "/api/v1/items/#{merchant.items.last.id}/best_day"
 
       expect(response).to be_success
 
       raw_data = JSON.parse(response.body)
-      raw_item = raw_data.first
-      expect(raw_item).to have_key("best_day")
-      expect(raw_item["best_day"]).to be_a String
+      
+      expect(raw_data).to have_key("best_day")
+      expect(raw_data["best_day"]).to be_a String
     end
   end
 end
